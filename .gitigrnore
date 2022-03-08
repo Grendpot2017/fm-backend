@@ -1,2 +1,11 @@
-*/__pycashe__
-*/migrations
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+media
+
+# Backup files # 
+*.bak 
+
