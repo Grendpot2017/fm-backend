@@ -4,27 +4,27 @@ from rest_framework import serializers
 class ProjectSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Project
-        fields = ['name', 'links']
+        fields = ['id', 'name', 'links']
 
-class TagSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Tag
-        fields = ['name']
+class TagSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    name = serializers.CharField(max_length=20)
 
 class LinkSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Link
-        fields = ['name', 'url']
+        fields = ['id', 'name', 'url']
 
 class ContactSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Contact
-        fields = ['name', 'contact_text']
+        fields = ['id', 'name', 'contact_text']
 
-class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
+class OrganizationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organization
-        fields = [
+        fields = (
+            'id',
             'name', 
             'country',
             'place',
@@ -33,14 +33,15 @@ class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
             'url',
             'projects',
             'contacts'
-        ]
+        )
 
-class OrganizationEssentialSerializer(serializers.HyperlinkedModelSerializer):
+class OrganizationEssentialSerializer(serializers.ModelSerializer):
     class Meta:
         model = Organization
-        fields = [
+        fields = (
+            'id',
             'name', 
             'country',
             'place',
             'tags',
-        ]
+        )

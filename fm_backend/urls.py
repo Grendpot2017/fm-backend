@@ -10,15 +10,15 @@ router.register(r'groups', views_auth.GroupViewSet)
 
 router1 = routers.DefaultRouter()
 router1.register(r'organization', views_orgs.OrganizationViewSet)
-router1.register(r'organizationessential', views_orgs.OrganizationEssentialViewSet)
+router1.register(r'all', views_orgs.OrganizationEssentialViewSet)
 router1.register(r'project', views_orgs.ProjectViewSet)
 router1.register(r'tag', views_orgs.TagViewSet)
 router1.register(r'link', views_orgs.LinkViewSet)
 router1.register(r'contacts', views_orgs.ContactViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls)),
-    path('orgs/', include(router1.urls)),
-    path('api-auth/',  include('rest_framework.urls', namespace='rest_framework')),
+    path('api/v1/admin/', admin.site.urls),
+    path('api/v1/', include(router.urls)),
+    path('api/v1/organizations/', include(router1.urls)),
+    path('api/v1/api-auth/',  include('rest_framework.urls', namespace='rest_framework')),
 ]

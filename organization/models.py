@@ -3,6 +3,9 @@ from django.db import models
 class Tag(models.Model):
     name = models.CharField(max_length=20)
 
+    def __str__(self):
+        return '%s' % (self.id)
+
 class Photo(models.Model):
     name = models.TextField()
     upload = models.ImageField(upload_to='uploads//%Y/%m/%d/')
